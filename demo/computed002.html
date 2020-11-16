@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  长度：<input v-model="length" type="text" /><br /> 宽度：
+  <input v-model="width" type="text" /><br /> 面积：
+  <input v-model="areas" type="text" />
+  <button @click="add()">+</button><br /> 和的值为：
+  <input v-model="num" />
+</div>
+<!--用computed属性方法编写的逻辑运算，在调用时直接将返回时areas视为一个变量值就可以使用，无需进行函数调用。computed 具有缓存功能，在系
+统刚运行的时候调用一次。只有只有当计算结果发生变化才会被调用。比如，我们在长度框与宽度框更改值的时候每次更改 computed 都会被调用一次，很浪
+费资源。
+用 methods 方法编写的逻辑运算，在调用时 add() 一定要加“()”，methods 里面写的多位方法，调用方法一定要有（）。methods方法页面刚加载时调
+用一次，以后只有被调用的时候才会被调用。我们在长度框和宽度框的值输入完以后，点击“+” methods 方法调用一次。这里很明显我们采用 methods会更
+节省资源。-->
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      length: '',
+      width: '',
+      num: ''
+    },
+    computed: {
+      areas: function() {
+        console.log('调用computed')
+        let areas
+        areas = this.length * this.width
+        return areas
+        /*console.log("computed被调用了")*/
+      }
+    },
+    methods: {
+      add: function() {
+        console.log('调用methods')
+        this.num = parseInt(this.length) + parseInt(this.width)
+      },
+
+    }
+
+  })
+</script>
+</body>
+</html>

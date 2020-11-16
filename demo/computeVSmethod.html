@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <!--method与compute的效果上是一样的，但是compute是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值，只有相关依赖发生改变时才会重新取值。-->
+  <!--而使用methods,在重新渲染的时候，函数总会重新调用执行。可以说使用 computed 性能会更好，但是如果你不希望缓存，你可以使用 methods 属性。-->
+
+</head>
+<body>
+<div id="app">
+  <p>{{ site }}</p>
+</div>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      name: 'Google',
+      url: 'http://www.google.com'
+    },
+    computed: {
+      site: {
+        // getter
+        get: function () {
+          return this.name + '' + this.url
+        },
+        // setter
+        set: function (newValue) {
+          var names = newValue.split(' ')
+          this.name = names[0]
+          this.url = names[names.length - 1]
+        }
+      }
+    }
+  })
+  // 调用setter, vm.name vm.url 也会对应改更新
+
+</script>
+
+</body>
+</html>
