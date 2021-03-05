@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>输入框</title>
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>input 元素:</p>
+  <input v-model="message" placeholder="编辑我.....">
+  <p>消息是{{ message }}</p>
+
+  <p>textarea 元素:</p>
+  <p style="white-space: pre">{{ message2 }}</p>
+  <textarea v-model="message2" placeholder="多行"></textarea>
+</div>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Runoob',
+      message2: 'koma'
+    }
+  })
+</script>
+</body>
+</html>
