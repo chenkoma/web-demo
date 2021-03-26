@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>使用v-bind将todo传到每一个重复的组件中</title>
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <ol>
+    <todo-item v-for="item in sites" v-bind:todo="item"></todo-item>
+  </ol>
+</div>
+<script>
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      sites: [
+        { text: 'Runoob' },
+        { text: 'google' },
+        { text: 'Taobao' }
+      ]
+    }
+  })
+</script>
+
+</body>
+</html>
